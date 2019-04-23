@@ -7,12 +7,6 @@ use App\Log;
 
 class LogsController extends Controller
 {
-    public function tabular(Request $request)
-    {
-        $logs = Log::all();
-        return view('logs/logs_tabular',['logs'=>$logs]);
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -46,7 +40,7 @@ class LogsController extends Controller
         $form = $request->all();
         unset($form['_token']);
         $log->fill($form)->save();
-        return redirect('/logs');
+        return redirect('/');
     }
 
     /**

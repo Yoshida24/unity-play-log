@@ -12,10 +12,5 @@
 */
 
 
-Route::get('dashboards','DashboardsController@index');
+Route::get('/','DashboardsController@index');
 Route::resource('logs','LogsController');
-//Route::get('/', 'LogsController@index');
-
-Route::get('/', function () {
-    return view('welcome');
-});

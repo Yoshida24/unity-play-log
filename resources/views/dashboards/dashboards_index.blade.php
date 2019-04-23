@@ -3,7 +3,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Hello,World!</title>
+        <title>Logs</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -60,20 +60,45 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+
+            table {
+                width: 100%;
+            }
+
+            table, td, th {
+                border-collapse: collapse;
+                border:1px solid;
+            }
+
+            .pagination li { display:inline-block }
         </style>
     </head>
     <body>
-        Logs
-        <table>
-          <tr><th>ID</th><th>User Name</th><th>Comment</th></tr>
-          @foreach($logs as $log)
-          <tr>
-              <td>{{$log->id}}</td>
-              <td>{{$log->user_name}}</td>
-              <td>{{$log->comment}}</td>
-          </tr>
-          @endforeach
-        </table>
-        {{$logs->links()}}
+        <div class="position-ref full-height">
+            <div class="title m-b-md">
+                Logs
+            </div>
+            <div class="content">
+                <table id="tbl-bdr">
+                    <tr>
+                        <th><a href="/?sort=id">ID</a></th>
+                        <th><a href="/?sort=user_name">User Name</a></th>
+                        <th><a href="/?sort=comment">Comment</a></th>
+                        <th><a href="/?sort=created_at">Created At</a></th>
+                        <th><a href="/?sort=updated_at">Updated At</a></th>
+                    </tr>
+                    @foreach($logs as $log)
+                    <tr>
+                        <td>{{$log->id}}</td>
+                        <td>{{$log->user_name}}</td>
+                        <td>{{$log->comment}}</td>
+                        <td>{{$log->created_at}}</td>
+                        <td>{{$log->updated_at}}</td>
+                    </tr>
+                @endforeach
+            </table>
+            {{$logs->appends(['sort'=>$sort])->links()}}
+        </div>
+      </div>
     </body>
 </html>
